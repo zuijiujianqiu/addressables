@@ -40,7 +40,7 @@ namespace UnityEditor.AddressableAssets.Build.DataBuilders
             }
         }
 
-        internal List<ObjectInitializationData> m_ResourceProviderData;
+        protected List<ObjectInitializationData> m_ResourceProviderData;
         List<AssetBundleBuild> m_AllBundleInputDefs;
         List<string> m_OutputAssetBundleNames;
         HashSet<string> m_CreatedProviderIds;
@@ -416,7 +416,7 @@ namespace UnityEditor.AddressableAssets.Build.DataBuilders
             return AddressableAssetBuildResult.CreateResult<TResult>(settingsPath, aaContext.locations.Count);
         }
 
-        private static void ProcessCatalogEntriesForBuild(AddressableAssetsBuildContext aaContext,
+        protected virtual void ProcessCatalogEntriesForBuild(AddressableAssetsBuildContext aaContext,
             IEnumerable<AddressableAssetGroup> validGroups, AddressablesDataBuilderInput builderInput, IBundleWriteData writeData,
             List<CachedAssetState> carryOverCachedState, Dictionary<string, string> bundleToInternalId)
         {

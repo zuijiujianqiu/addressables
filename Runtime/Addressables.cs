@@ -1596,6 +1596,33 @@ namespace UnityEngine.AddressableAssets
         {
             return m_Addressables.ClearDependencyCacheAsync(keys, autoReleaseHandle);
         }
+        
+                /// <summary>
+        /// Given the Id of an IResourceLocator, get the relevant content catalog data associated with it.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the content catalog data associated with the specified [IResourceLocator](xref:UnityEngine.AddressableAssets.ResourceLocators.IResourceLocator) id. The catalog data is stored as a [ResourceLocatorInfo](xref:UnityEngine.AddressableAssets.ResourceLocatorInfo) object.
+        /// </remarks>
+        /// <param name="locatorId">The identifier of an [IResourceLocator](xref:UnityEngine.AddressableAssets.ResourceLocators.IResourceLocator) used to retrieve content catalog data.</param>
+        /// <returns>Container for content catalog data pertaining to the [IResourceLocator](xref:UnityEngine.AddressableAssets.ResourceLocators.IResourceLocator) object.</returns>
+        /// <example>
+        /// The example below uses the identifiers of the resource locators loaded during Addressables initialization process to retrieve catalog data.
+        /// <code source="../Tests/Editor/DocExampleCode/ScriptReference/UsingGetLocatorInfo.cs" region="SAMPLE_1"/>
+        /// </example>
+        public static AddressablesImpl.ResourceLocatorInfo GetLocatorInfo(string locatorId)
+        {
+            return m_Addressables.GetLocatorInfo(locatorId);
+        }
+
+        /// <summary>
+        /// Given an [IResourceLocator](xref:UnityEngine.AddressableAssets.ResourceLocators.IResourceLocator), get the relevant content catalog data associated with it.
+        /// </summary>
+        /// <param name="locator">The resource locator you want to get content catalog data for.</param>
+        /// <returns>Container for content catalog data pertaining to the [IResourceLocator](xref:UnityEngine.AddressableAssets.ResourceLocators.IResourceLocator) object.</returns>
+        public static AddressablesImpl.ResourceLocatorInfo GetLocatorInfo(IResourceLocator locator)
+        {
+            return m_Addressables.GetLocatorInfo(locator.LocatorId);
+        }
 
         /// <summary>
         /// Clear the cached AssetBundles for a list of Addressable keys.  Operation may be performed async if Addressables
@@ -1613,6 +1640,8 @@ namespace UnityEngine.AddressableAssets
         {
             return m_Addressables.ClearDependencyCacheAsync((object)key, autoReleaseHandle);
         }
+        
+        
 
         /// <summary>
         /// Instantiate a single object. Note that the dependency loading is done asynchronously, but generally the actual instantiate is synchronous.

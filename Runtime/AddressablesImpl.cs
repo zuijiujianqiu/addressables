@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 
 namespace UnityEngine.AddressableAssets
 {
-    internal class AddressablesImpl : IEqualityComparer<IResourceLocation>
+    public class AddressablesImpl : IEqualityComparer<IResourceLocation>
     {
         ResourceManager m_ResourceManager;
         IInstanceProvider m_InstanceProvider;

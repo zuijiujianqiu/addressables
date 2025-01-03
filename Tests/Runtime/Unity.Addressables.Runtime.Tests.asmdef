@@ -4,7 +4,9 @@
         "Unity.Addressables",
         "Unity.ResourceManager",
         "Unity.Addressables.Editor",
-        "Unity.ScriptableBuildPipeline.Editor"
+        "Unity.ScriptableBuildPipeline.Editor",
+        "UnityEditor.UI",
+        "UnityEngine.UI"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

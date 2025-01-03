@@ -339,6 +339,31 @@ namespace UnityEngine.AddressableAssets.ResourceLocators
             return locator;
         }
         
+        
+        public IList<ContentCatalogDataEntry> GetData()
+        {
+            var loc = CreateLocator();
+            var res = new List<ContentCatalogDataEntry>();
+            var locsToKeys = new Dictionary<IResourceLocation, List<object>>();
+            foreach (var k in loc.Keys)
+            {
+                //foreach (var l in k.Value)
+                loc.Locate(k, null, out var locs);
+                foreach (var l in locs)
+                {
+                    if (!locsToKeys.TryGetValue(l, out var keys))
+                        locsToKeys.Add(l, keys = new List<object>());
+                    keys.Add(k.ToString());
+                }
+            }
+            foreach (var k in locsToKeys)
+            {
+                res.Add(new ContentCatalogDataEntry(k.Key.ResourceType, k.Key.InternalId, k.Key.ProviderId, k.Value, k.Key.Dependencies == null ? null : k.Key.Dependencies.Select(d => d.PrimaryKey).ToList(), k.Key.Data));
+            }
+
+            return res;
+        }
+        
         internal static string ExpandInternalId(string[] internalIdPrefixes, string v)
         {
             if (internalIdPrefixes == null || internalIdPrefixes.Length == 0)
